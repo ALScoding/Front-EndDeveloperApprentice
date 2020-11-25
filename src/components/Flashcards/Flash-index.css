@@ -1,0 +1,14 @@
+.cardRow{
+    margin-top: 5%;
+    padding: 5px;
+}
+
+.btnRow{
+    padding: 5px;
+}
+
+.posRow{
+    color: #333;
+    font-size: 2.0em;
+    text-align: center;
+}
