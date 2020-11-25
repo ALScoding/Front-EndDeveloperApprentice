@@ -159,7 +159,7 @@ export default class Flashcard extends Component {
             </form>
 
             <button
-              className='badge badge-danger mr-2'
+              className='m-3 btn btn-lg btn-danger'
               onClick={this.deleteFlashcard}
             >
               Delete
@@ -167,7 +167,7 @@ export default class Flashcard extends Component {
 
             <button
               type='submit'
-              className='badge badge-success'
+              className='m-3 btn btn-lg btn-success'
               onClick={this.updateFlashcard}
             >
               Update

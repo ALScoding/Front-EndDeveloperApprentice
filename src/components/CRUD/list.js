@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import FlashcardDataService from '../services/flashcard.service'
-
+import './List.css'
 import Flashcard from '.'
 
 // list works as expected
@@ -76,25 +76,25 @@ export default class FlashcardsList extends Component {
       <div className='list row'>
         <div className='col-md-6'>
           <h4>Flashcards List</h4>
-
-          <ul className='list-group'>
-            {cards &&
-              cards.map((flashcard, index) => (
-                <li
-                  className={
-                    'list-group-item ' +
-                    (index === currentIndex ? 'active' : '')
-                  }
-                  onClick={() => this.setActiveFlashcard(flashcard, index)}
-                  id={index}
-                >
-                  # {flashcard.id + 1}
-                </li>
-              ))}
-          </ul>
-
+          <div id='table-scroll'>
+            <ul className='list-group'>
+              {cards &&
+                cards.map((flashcard, index) => (
+                  <li
+                    className={
+                      'list-group-item ' +
+                      (index === currentIndex ? 'active' : '')
+                    }
+                    onClick={() => this.setActiveFlashcard(flashcard, index)}
+                    id={index}
+                  >
+                    # {flashcard.id + 1}
+                  </li>
+                ))}
+            </ul>
+          </div>
           <button
-            className='m-3 btn btn-sm btn-danger'
+            className='m-6 btn btn-lg btn-danger'
             onClick={this.removeAllFlashcards}
           >
             Remove All

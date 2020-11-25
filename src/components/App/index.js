@@ -8,7 +8,7 @@ import PasswordForgetPage from '../PasswordForget'
 import HomePage from '../Home'
 import AccountPage from '../Account'
 import FlashcardPage from '../Flashcards'
-import Flashcard from '../CRUD'
+import CardManager from '../CRUD/context'
 import AddFlashcard from '../CRUD/add'
 import * as ROUTES from '../../constants/routes'
 import { withAuthentication } from '../Session'
@@ -28,7 +28,7 @@ const App = () => (
       />
       <Route exact path={ROUTES.ACCOUNT} component={AccountPage} />
       <Route exact path={ROUTES.FLASHCARDS} component={FlashcardPage} />
-      <Route exact path={ROUTES.LIST} component={Flashcard} />
+      <Route exact path={ROUTES.LIST} component={CardManager} />
       <Route exact path={ROUTES.ADD} component={AddFlashcard} />
     </div>
   </Router>

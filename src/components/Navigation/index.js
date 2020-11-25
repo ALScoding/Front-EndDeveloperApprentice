@@ -15,7 +15,7 @@ const Navigation = () => (
 )
 
 const NavigationAuth = () => (
-  <nav class='navbar navbar-inverse'>
+  <nav class='navbar navbar-inverse navbar-expand-lg'>
     <div class='container-fluid'>
       <ul class='nav navbar-nav'>
         <li>
@@ -42,7 +42,7 @@ const NavigationAuth = () => (
 )
 
 const NavigationNonAuth = () => (
-  <nav class='navbar navbar-inverse'>
+  <nav class='navbar navbar-inverse navbar-expand-lg'>
     <div class='container-fluid'>
       <ul class='nav navbar-nav'>
         <li>

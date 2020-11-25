@@ -41,19 +41,19 @@ class FlashcardPage extends Component {
     //     .child('cards')
     // )
     const currentCards = this.state.cards
-    this.database.on('child_added', snap => {
-      currentCards.push({
-        id: snap.key,
-        frontside: snap.val().frontside,
-        backside: snap.val().backside,
-        answer: snap.val().answer
-      })
+    // this.database.on('child_added', snap => {
+    //   currentCards.push({
+    //     id: snap.key,
+    //     frontside: snap.val().frontside,
+    //     backside: snap.val().backside,
+    //     answer: snap.val().answer
+    //   })
 
-      this.setState({
-        cards: currentCards,
-        currentCard: this.getRandomCard(currentCards)
-      })
-    })
+    //   this.setState({
+    //     cards: currentCards,
+    //     currentCard: this.getRandomCard(currentCards)
+    //   })
+    // })
   }
 
   currPosition (currid) {
