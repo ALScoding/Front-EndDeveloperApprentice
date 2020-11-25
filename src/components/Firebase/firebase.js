@@ -3,14 +3,7 @@ import 'firebase/auth'
 import 'firebase/database'
 
 const config = {
-  apiKey: 'AIzaSyBt2mJFv2pJ8JPqguq2pGONysqQb0xSev0',
-  authDomain: 'myflashcards-f48b9.firebaseapp.com',
-  databaseURL: 'https://myflashcards-f48b9.firebaseio.com',
-  projectId: 'myflashcards-f48b9',
-  storageBucket: 'myflashcards-f48b9.appspot.com',
-  messagingSenderId: '346796309304',
-  appId: '1:346796309304:web:877cae1a557e48a4819fcd',
-  measurementId: 'G-GDGGKL3954'
+//config data goes here
 }
 
 class Firebase {
