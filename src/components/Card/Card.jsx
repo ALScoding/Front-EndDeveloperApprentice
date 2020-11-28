@@ -1,5 +1,5 @@
 import React from 'react'
-import './Card.css'
+import '../../css/Card.css'
 import ReactCardFlip from 'react-card-flip'
 
 const Card = props => (

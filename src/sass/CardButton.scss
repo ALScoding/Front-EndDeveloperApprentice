@@ -1,0 +1,27 @@
+$col: darkcyan;
+
+.buttonContainer {
+  height: 100px;
+  border: none;
+  display: block;
+  text-align: center;
+  color: white;
+  box-shadow: 0px 6px $col;
+  background: greenyellow;
+  margin: auto;
+  margin-top: 25px;
+  font-weight: bolder;
+}
+
+.btn {
+  font-size: 3px;
+  width: auto;
+}
+
+.btn:active {
+  border: none;
+  position: relative;
+  top: 3px;
+  box-shadow: 1px 1px $col;
+  background:$col;
+}

@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import FlashcardDataService from '../services/flashcard.service'
-import './List.css'
+import '../../css/List.css'
 import Flashcard from '.'
+import { withFirebase } from '../Firebase/context'
 
 // list works as expected
-export default class FlashcardsList extends Component {
+class FlashcardsList extends Component {
   constructor (props) {
     super(props)
     this.refreshList = this.refreshList.bind(this)
@@ -19,12 +20,12 @@ export default class FlashcardsList extends Component {
     }
   }
 
-  componentDidMount () {
-    FlashcardDataService.getAll().on('value', this.onDataChange)
-  }
-
-  componentWillUnmount () {
-    FlashcardDataService.getAll().off('value', this.onDataChange)
+  async componentDidMount () {
+    let cards
+    await this.props.firebase.callData().then(response => {
+      cards = response
+    })
+    this.setState({ cards })
   }
 
   onDataChange (items) {
@@ -117,3 +118,5 @@ export default class FlashcardsList extends Component {
     )
   }
 }
+
+export default withFirebase(FlashcardsList)

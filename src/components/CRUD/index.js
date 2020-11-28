@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import FlashcardDataService from '../services/flashcard.service'
+import { withFirebase } from '../Firebase/context'
 
 //CRUD components
-export default class Flashcard extends Component {
+class Flashcard extends Component {
   constructor (props) {
     super(props)
     this.onChangeFrontside = this.onChangeFrontside.bind(this)
@@ -24,8 +25,9 @@ export default class Flashcard extends Component {
 
   static getDerivedStateFromProps (nextProps, prevState) {
     const { flashcard } = nextProps
-    console.log('prevState', prevState)
-    console.log('nextProps', nextProps)
+    // console.log('prevState', prevState)
+    // console.log('nextProps', nextProps)
+
     // no previous state
     if (prevState.currentFlashcard === undefined) {
       return {
@@ -44,9 +46,14 @@ export default class Flashcard extends Component {
     return prevState.currentFlashcard
   }
 
-  componentDidMount () {
+  async componentDidMount () {
+    let card
+    console.log(this.props)
+    await this.props.flashcard.callData().then(response => {
+      card = response
+    })
     this.setState({
-      currentFlashcard: this.props.Flashcard
+      currentFlashcard: card
     })
   }
 
@@ -185,4 +192,4 @@ export default class Flashcard extends Component {
   }
 }
 
-//export default Flashcard
+export default withFirebase(Flashcard)

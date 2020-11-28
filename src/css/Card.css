@@ -1,0 +1,41 @@
+.card-container {
+  cursor: pointer;
+  height: 500px;
+  width: 500px;
+  perspective: 800px;
+  position: relative;
+  margin: auto;
+  transition: ease-in;
+}
+
+.card {
+  border: 1px solid black;
+  transform-style: preserve-3d;
+  transition: all 0.3s ease-in-out;
+}
+.card .front {
+  backface-visibility: hidden;
+  overflow: hidden;
+  background-color: lightgray;
+}
+
+.card .front .back {
+  height: 500px;
+  width: 500px;
+  text-align: center;
+  position: absolute;
+}
+
+.bothsides {
+  color: black;
+  font-size: 8em;
+  padding-top: 5%;
+}
+
+.answer {
+  color: red;
+  font-size: 3em;
+  padding-top: 0%;
+}
+
+/*# sourceMappingURL=Card.css.map */

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './CardButton.css';
+import '../../css/CardButton.css';
 
 class CardButton extends Component{
     constructor(props){

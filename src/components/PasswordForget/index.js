@@ -56,7 +56,7 @@ class PasswordForgetFormBase extends Component {
           placeholder='Email Address'
         />
         <button disabled={isInvalid} type='submit'>
-          Reset My Password
+          Reset my password
         </button>
 
         {error && <p>{error.message}</p>}
@@ -67,7 +67,7 @@ class PasswordForgetFormBase extends Component {
 
 const PasswordForgetLink = () => (
   <p>
-    <Link to={ROUTES.PASSWORD_FORGET}>Forgot Password?</Link>
+    <Link to={ROUTES.PASSWORD_FORGET}>Forgot your password?</Link>
   </p>
 )
 

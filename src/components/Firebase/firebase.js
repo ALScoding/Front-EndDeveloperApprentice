@@ -36,8 +36,8 @@ class Firebase {
   doPasswordUpdate = password => this.auth.currentUser.updatePassword(password)
 
   // call flashcards data
-  callData = () =>
-    this.db
+  callData = async () =>
+    await this.db
       .ref('cards')
       .once('value')
       .then(snapshot => snapshot.val())

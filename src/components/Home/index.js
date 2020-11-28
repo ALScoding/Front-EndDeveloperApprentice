@@ -2,7 +2,7 @@ import React from 'react'
 import DateTime from '../DateTime'
 const HomePage = () => (
   <div>
-    <h1>Home Page</h1>
+    <h1>Welcome</h1>
     <DateTime />
   </div>
 )

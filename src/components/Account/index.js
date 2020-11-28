@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withFirebase } from '../Firebase/context'
 
-class AdminPage extends Component {
+class AccountPage extends Component {
   constructor (props) {
     super(props)
 
@@ -38,7 +38,7 @@ class AdminPage extends Component {
 
     return (
       <div>
-        <h1>Admin</h1>
+        <h1>Account:</h1>
 
         {loading && <div>Loading ...</div>}
 
@@ -72,4 +72,4 @@ const UserList = ({ users }) => (
   </ul>
 )
 
-export default withFirebase(AdminPage)
+export default withFirebase(AccountPage)
