@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import FlashcardDataService from '../services/flashcard.service'
 import { withFirebase } from '../Firebase/context'
 
 //CRUD components
@@ -47,13 +46,13 @@ class Flashcard extends Component {
   }
 
   async componentDidMount () {
-    let card
-    console.log(this.props)
-    await this.props.flashcard.callData().then(response => {
-      card = response
-    })
+    // let card
+    // console.log(this.props)
+    // await this.props.flashcard.callData().then(response => {
+    //   card = response
+    // })
     this.setState({
-      currentFlashcard: card
+      currentFlashcard: this.props.flashcard
     })
   }
 
@@ -99,22 +98,33 @@ class Flashcard extends Component {
       answer: this.state.currentFlashcard.answer,
       id: this.state.currentFlashcard.id
     }
-
-    FlashcardDataService.update(this.state.currentFlashcard.id, data)
-      .then(() => {
+    this.props.firebase
+      .updateCard(this.state.currentFlashcard.id, data)
+      .then(response => {
         this.setState({
+          currentFlashcard: { ...this.state.currentFlashcard, data },
           message: 'The Flashcard was updated successfully!'
         })
       })
       .catch(e => {
         console.log(e)
       })
+    // FlashcardDataService.update(this.state.currentFlashcard.id, data)
+    //   .then(() => {
+    //     this.setState({
+    //       message: 'The Flashcard was updated successfully!'
+    //     })
+    //   })
+    //   .catch(e => {
+    //     console.log(e)
+    //   })
   }
 
   deleteFlashcard () {
-    FlashcardDataService.delete(this.state.currentFlashcard.id)
-      .then(() => {
-        this.props.refreshList()
+    this.props.firebase
+      .deleteCard(this.state.currentFlashcard.id)
+      .then(response => {
+        this.props.refreshList(false, this.state.currentFlashcard.id)
         this.setState({
           message: 'The Flashcard was deleted successfully!'
         })
@@ -122,18 +132,34 @@ class Flashcard extends Component {
       .catch(e => {
         console.log(e)
       })
+    // FlashcardDataService.delete(this.state.currentFlashcard.id)
+    //   .then(() => {
+    //     this.props.refreshList()
+    //     this.setState({
+    //       message: 'The Flashcard was deleted successfully!'
+    //     })
+    //   })
+    //   .catch(e => {
+    //     console.log(e)
+    //   })
   }
 
   render () {
     const { currentFlashcard } = this.state
+    const margin1 = {
+      marginTop: '50px'
+    }
+    const margin2 = {
+      marginTop: '25px'
+    }
 
     return (
       <div>
-        <h4>Flashcard</h4>
+        <h3>Flashcard Details:</h3>
         {currentFlashcard ? (
           <div className='edit-form'>
             <form>
-              <div className='form-group'>
+              <div className='form-group' style={margin1}>
                 <label htmlFor='Frontside'>Frontside</label>
                 <input
                   type='text'
@@ -143,7 +169,7 @@ class Flashcard extends Component {
                   onChange={this.onChangeFrontside}
                 />
               </div>
-              <div className='form-group'>
+              <div className='form-group' style={margin2}>
                 <label htmlFor='Backside'>Backside</label>
                 <input
                   type='text'
@@ -153,7 +179,7 @@ class Flashcard extends Component {
                   onChange={this.onChangeBackside}
                 />
               </div>
-              <div className='form-group'>
+              <div className='form-group' style={margin2}>
                 <label htmlFor='Backside'>Answer</label>
                 <input
                   type='text'
@@ -184,7 +210,8 @@ class Flashcard extends Component {
         ) : (
           <div>
             <br />
-            <p>Please click on a Flashcard...</p>
+            <h3>Please click on a Flashcard...</h3>
+            <p>{this.state.message}</p>
           </div>
         )}
       </div>

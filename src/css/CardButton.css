@@ -3,7 +3,6 @@
   border: none;
   display: block;
   text-align: center;
-  color: white;
   box-shadow: 0px 6px darkcyan;
   background: greenyellow;
   margin: auto;
@@ -11,12 +10,12 @@
   font-weight: bolder;
 }
 
-.btn {
-  font-size: 3px;
+button.btn {
+  font-size: 20px;
   width: auto;
 }
 
-.btn:active {
+button.btn:active {
   border: none;
   position: relative;
   top: 3px;

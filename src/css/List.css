@@ -1,5 +1,6 @@
 #table-scroll {
-    height: 450px;
+    height: 400px;
     overflow: auto;
-    margin: 20px;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }

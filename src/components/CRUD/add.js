@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import FlashcardDataService from '../services/flashcard.service'
+import { withFirebase } from '../Firebase/context'
 
 // page that allows user to card new flashcards
-export default class AddFlashcard extends Component {
+class AddFlashcard extends Component {
   constructor (props) {
     super(props)
     this.onChangeId = this.onChangeId.bind(this)
@@ -57,7 +57,9 @@ export default class AddFlashcard extends Component {
       answer: this.state.answer
     }
 
-    FlashcardDataService.create(data)
+    //FlashcardDataService.create(data) replaced
+    this.props.firebase
+      .create(data)
       .then(() => {
         console.log('Created new item successfully!')
         this.setState({
@@ -139,3 +141,5 @@ export default class AddFlashcard extends Component {
     )
   }
 }
+
+export default withFirebase(AddFlashcard)

@@ -1,6 +1,7 @@
 import app from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/database'
+import { forEach, property } from 'lodash'
 
 const config = {
   apiKey: 'AIzaSyBt2mJFv2pJ8JPqguq2pGONysqQb0xSev0',
@@ -41,6 +42,49 @@ class Firebase {
       .ref('cards')
       .once('value')
       .then(snapshot => snapshot.val())
+
+  updateCard = async (id, value) =>
+    await this.db
+      .ref('/cards/' + id)
+      .set(value)
+      .then(res => res)
+
+  deleteCard = async id => await this.db.ref('/cards/' + id).remove()
+
+  deleteAll = async id => await this.db.ref('/cards').remove()
+
+  async create (flashcard) {
+    await this.db
+      .ref('cards')
+      .once('value')
+      .then(snapshot => {
+        let items = snapshot.val()
+        let count = 0
+
+        for (var property in items) {
+          if (Object.prototype.hasOwnProperty.call(items, property)) {
+            count++
+          }
+        }
+
+        flashcard.id = count
+        this.db.ref('/cards/' + flashcard.id).set(flashcard)
+      })
+
+    return this.db.ref('/cards/' + flashcard.id).push()
+  }
+  // await this.db.ref('cards', snapshot => {
+  //   let items = snapshot.val()
+  //   let count = 0
+
+  //   for (var property in items) {
+  //     if (Object.prototype.hasOwnProperty.call(items, property)) {
+  //       count++
+  //     }
+  //   }
+  //   flashcard.id = count
+  //   db.push(flashcard)
+  // })
 
   // *** User API ***
 

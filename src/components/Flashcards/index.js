@@ -32,28 +32,24 @@ class FlashcardPage extends Component {
     }
   }
 
-  componentWillMount () {
+  async componentWillMount () {
     console.log(this.props)
-    // console.log(
-    //   this.app
-    //     .database()
-    //     .ref()
-    //     .child('cards')
-    // )
+    let cards
+    await this.props.firebase.callData().then(response => {
+      console.log(response)
+      cards = response
+      // currentCards.push({
+      //   id: snap.key,
+      //   frontside: snap.val().frontside,
+      //   backside: snap.val().backside,
+      //   answer: snap.val().answer
+      // })
+    })
     const currentCards = this.state.cards
-    // this.database.on('child_added', snap => {
-    //   currentCards.push({
-    //     id: snap.key,
-    //     frontside: snap.val().frontside,
-    //     backside: snap.val().backside,
-    //     answer: snap.val().answer
-    //   })
-
-    //   this.setState({
-    //     cards: currentCards,
-    //     currentCard: this.getRandomCard(currentCards)
-    //   })
-    // })
+    this.setState({
+      cards: cards,
+      currentCard: this.getRandomCard(currentCards)
+    })
   }
 
   currPosition (currid) {

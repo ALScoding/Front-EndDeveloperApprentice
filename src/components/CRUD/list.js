@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import FlashcardDataService from '../services/flashcard.service'
+//import FlashcardDataService from '../services/flashcard.service'
 import '../../css/List.css'
 import Flashcard from '.'
 import { withFirebase } from '../Firebase/context'
+import { find, remove } from 'lodash'
 
 // list works as expected
 class FlashcardsList extends Component {
@@ -46,8 +47,12 @@ class FlashcardsList extends Component {
     })
   }
 
-  refreshList () {
+  refreshList (empty = false, delCard) {
+    let { cards } = this.state
+    remove(cards, c => (!!c ? c.id == delCard : null))
+    cards = empty ? [] : cards
     this.setState({
+      cards,
       currentFlashcard: null,
       currentIndex: -1
     })
@@ -61,13 +66,19 @@ class FlashcardsList extends Component {
   }
 
   removeAllFlashcards () {
-    FlashcardDataService.deleteAll()
+    this.props.firebase
+      .deleteAll()
       .then(() => {
-        this.refreshList()
+        this.refreshList(true)
       })
       .catch(e => {
         console.log(e)
       })
+  }
+
+  updateCardInList (data, id) {
+    let { cards } = this.state
+    let card = find(cards, c => c.id === id)
   }
 
   render () {
@@ -76,7 +87,7 @@ class FlashcardsList extends Component {
     return (
       <div className='list row'>
         <div className='col-md-6'>
-          <h4>Flashcards List</h4>
+          <h3>Full Flashcards List</h3>
           <div id='table-scroll'>
             <ul className='list-group'>
               {cards &&
@@ -110,7 +121,7 @@ class FlashcardsList extends Component {
           ) : (
             <div>
               <br />
-              <p>Please click on a Flashcard...</p>
+              <h3>Please click on a Flashcard...</h3>
             </div>
           )}
         </div>
