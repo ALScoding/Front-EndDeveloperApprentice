@@ -1,7 +1,6 @@
 import app from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/database'
-import { forEach, property } from 'lodash'
 
 const config = {
   apiKey: 'AIzaSyBt2mJFv2pJ8JPqguq2pGONysqQb0xSev0',
@@ -41,7 +40,9 @@ class Firebase {
     await this.db
       .ref('cards')
       .once('value')
-      .then(snapshot => snapshot.val())
+      .then(snapshot => {
+        return snapshot.val().filter(card => card != null)
+      })
 
   updateCard = async (id, value) =>
     await this.db
@@ -73,6 +74,7 @@ class Firebase {
 
     return this.db.ref('/cards/' + flashcard.id).push()
   }
+
   // await this.db.ref('cards', snapshot => {
   //   let items = snapshot.val()
   //   let count = 0

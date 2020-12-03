@@ -1,10 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
 import SignOutButton from '../SignOut'
 import * as ROUTES from '../../constants/routes'
-
 import { AuthUserContext } from '../Session'
+import '../../css/Nav.css'
 
 const Navigation = () => (
   <div>
@@ -25,13 +24,13 @@ const NavigationAuth = () => (
           <Link to={ROUTES.ACCOUNT}>Account</Link>
         </li>
         <li>
-          <Link to={ROUTES.FLASHCARDS}>Study</Link>
-        </li>
-        <li>
           <Link to={ROUTES.LIST}>Flashcard List</Link>
         </li>
         <li>
           <Link to={ROUTES.ADD}>Add Cards</Link>
+        </li>
+        <li>
+          <Link to={ROUTES.FLASHCARDS}>Study Now</Link>
         </li>
         <li>
           <SignOutButton />
@@ -50,6 +49,9 @@ const NavigationNonAuth = () => (
         </li>
         <li>
           <Link to={ROUTES.SIGN_IN}>Sign In</Link>
+        </li>
+        <li>
+          <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
         </li>
       </ul>
     </div>

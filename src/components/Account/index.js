@@ -6,69 +6,80 @@ class AccountPage extends Component {
     super(props)
 
     this.state = {
-      loading: false,
-      users: []
+      uid: '',
+      email: '',
+      displayName: '',
+      loading: false
     }
   }
 
   componentDidMount () {
+    // var user = this.props.firebase.auth.onAuthStateChanged(user => {
+    //   this.setState({ user })
+    // })
+    // console.log(user)
+    // console.log(this.state.user)
+    // if uid is equal to logged in user, something
+
     this.setState({ loading: true })
 
-    this.props.firebase.users().on('value', snapshot => {
-      const usersObject = snapshot.val()
-
-      const usersList = Object.keys(usersObject).map(key => ({
-        ...usersObject[key],
-        uid: key
-      }))
-
+    this.props.firebase.auth.onAuthStateChanged(user => {
+      //const userObject = snapshot.val()
+      //console.log(userObject)
+      // const usersList = Object.keys(userObject).map(key => ({
+      //   ...userObject[key],
+      //   uid: key
+      // }))
+      console.log(user)
       this.setState({
-        users: usersList,
+        uid: user.uid,
+        email: user.email,
+        displayName: user.displayName,
         loading: false
       })
     })
   }
 
   componentWillUnmount () {
-    this.props.firebase.users().off()
+    this.props.firebase.user().off()
   }
 
   render () {
-    const { users, loading } = this.state
+    const { loading } = this.state
 
     return (
       <div>
-        <h1>Account:</h1>
+        <h1>Your account data:</h1>
+        <br></br>
+        {loading && (
+          <div>
+            <h3>Now loading ...</h3>
+          </div>
+        )}
 
-        {loading && <div>Loading ...</div>}
-
-        <UserList users={users} />
+        <UserList />
       </div>
     )
   }
 }
 
-const UserList = ({ users }) => (
+const UserList = (
   <ul>
-    {users.map(user => (
-      <li key={user.uid}>
-        <span>
-          <li>
-            <strong>ID:</strong> {user.uid}
-          </li>
-        </span>
-        <span>
-          <li>
-            <strong>E-Mail:</strong> {user.email}
-          </li>
-        </span>
-        <span>
-          <li>
-            <strong>Username:</strong> {user.username}
-          </li>
-        </span>
-      </li>
-    ))}
+    {/* <li>
+      <h3>
+        <strong>ID:</strong> {this.state.uid}
+      </h3>
+    </li>
+    <li>
+      <h3>
+        <strong>Email:</strong> {this.state.email}
+      </h3>
+    </li>
+    <li>
+      <h3>
+        <strong>Username:</strong> {this.state.displayName}
+      </h3>
+    </li> */}
   </ul>
 )
 

@@ -23,7 +23,7 @@ class DateTime extends React.Component {
   render () {
     return (
       <div>
-        <h2>The time is: {this.state.date.toLocaleTimeString()}</h2>
+        <h1>The time is: {this.state.date.toLocaleTimeString()}</h1>
       </div>
     )
   }

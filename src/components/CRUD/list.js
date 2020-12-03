@@ -83,11 +83,10 @@ class FlashcardsList extends Component {
 
   render () {
     const { cards, currentFlashcard, currentIndex } = this.state
-    // console.log(cards)
     return (
       <div className='list row'>
         <div className='col-md-6'>
-          <h3>Full Flashcards List</h3>
+          <h3>Full Flashcards List:</h3>
           <div id='table-scroll'>
             <ul className='list-group'>
               {cards &&
@@ -100,7 +99,8 @@ class FlashcardsList extends Component {
                     onClick={() => this.setActiveFlashcard(flashcard, index)}
                     id={index}
                   >
-                    # {flashcard.id + 1}
+                    {' '}
+                    Entry # {flashcard.id + 1}
                   </li>
                 ))}
             </ul>
@@ -120,8 +120,7 @@ class FlashcardsList extends Component {
             />
           ) : (
             <div>
-              <br />
-              <h3>Please click on a Flashcard...</h3>
+              <h3>Please click on an Entry...</h3>
             </div>
           )}
         </div>

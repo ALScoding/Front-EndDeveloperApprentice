@@ -10,7 +10,8 @@ class CardManager extends Component {
     return (
       <div>
         <div className='container mt-3'>
-          <h2>React + Firebase Database List</h2>
+          <h1>Flashcard Data Editor</h1>
+          <br></br>
           <Switch>
             <Route exact path='/list' component={FlashcardsList} />
             <Route exact path='/add' component={AddFlashcard} />

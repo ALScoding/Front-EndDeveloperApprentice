@@ -1,0 +1,33 @@
+.buttonContainer {
+  font-size: 3em;
+  font-weight: bolder;
+  height: auto;
+  border: none;
+  display: block;
+  text-align: center;
+  background: #222222;
+  margin: auto;
+  margin-top: 25px;
+}
+
+button.btn {
+  border: 1px solid white;
+  color: goldenrod;
+  font-size: 1em;
+  font-weight: bolder;
+  margin: 1%;
+  width: auto;
+}
+
+button.btn:active {
+  position: relative;
+  top: 3px;
+}
+
+button.btn:hover {
+  border: 3px solid goldenrod;
+  background-color: lightyellow;
+  color: goldenrod;
+}
+
+/*# sourceMappingURL=CardButton.css.map */

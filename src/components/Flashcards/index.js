@@ -4,23 +4,17 @@ import Card from '../Card/Card'
 import CardButton from '../CardButton/CardButton'
 import 'firebase/database'
 import { withFirebase } from '../Firebase/context'
-import { withRouter } from 'react-router-dom'
 
 class FlashcardPage extends Component {
   constructor (props) {
     super(props)
 
-    // this.app = firebase.initializeApp(config)
-    // this.database = this.Firebase.database()
-    //   .ref()
-    //   .child('cards')
     this.currPosition = this.currPosition.bind(this)
-    this.prevCard = this.prevCard.bind(this)
-    this.randCard = this.randCard.bind(this)
-    this.nextCard = this.nextCard.bind(this)
+    this.traverseCard = this.traverseCard.bind(this)
     this.flipCard = this.flipCard.bind(this)
-    this.shuffleCards = this.shuffleCards.bind(this)
     this.showAnswer = this.showAnswer.bind(this)
+    this.randCard = this.randCard.bind(this)
+    this.shuffleCards = this.shuffleCards.bind(this)
 
     this.state = {
       cards: [],
@@ -33,22 +27,13 @@ class FlashcardPage extends Component {
   }
 
   async componentWillMount () {
-    console.log(this.props)
-    let cards
-    await this.props.firebase.callData().then(response => {
-      console.log(response)
-      cards = response
-      // currentCards.push({
-      //   id: snap.key,
-      //   frontside: snap.val().frontside,
-      //   backside: snap.val().backside,
-      //   answer: snap.val().answer
-      // })
-    })
-    const currentCards = this.state.cards
-    this.setState({
-      cards: cards,
-      currentCard: this.getRandomCard(currentCards)
+    await this.props.firebase.callData().then(snap => {
+      console.log(snap)
+      this.setState({
+        cards: snap,
+        currentCard: this.getRandomCard(snap),
+        length: snap.length
+      })
     })
   }
 
@@ -81,30 +66,25 @@ class FlashcardPage extends Component {
     this.resetFlag()
   }
 
-  prevCard () {
+  traverseCard (direction) {
     // added method
     const currentCards = this.state.cards
+    let len = currentCards.length
     let { id } = this.state.currentCard
-    id = id <= 0 ? 70 : --id
+    let cardArrIndex = currentCards.findIndex(card => card.id === id)
+    console.log('before', len, cardArrIndex)
+    if (direction === 'L') {
+      cardArrIndex = cardArrIndex <= 0 ? len - 1 : --cardArrIndex
+    } else if (direction === 'R') {
+      cardArrIndex = cardArrIndex >= len - 1 ? 0 : ++cardArrIndex
+    }
+    console.log('after', len, cardArrIndex)
     this.setState({
       cards: currentCards,
-      currentCard: currentCards[id]
+      currentCard: currentCards[cardArrIndex]
     })
     this.resetFlag()
-    this.currPosition(id)
-  }
-
-  nextCard () {
-    // added method
-    const currentCards = this.state.cards
-    let { id } = this.state.currentCard
-    id = id >= 70 ? 0 : ++id
-    this.setState({
-      cards: currentCards,
-      currentCard: currentCards[id]
-    })
-    this.resetFlag()
-    this.currPosition(id)
+    this.currPosition(cardArrIndex)
   }
 
   resetFlag () {
@@ -163,11 +143,10 @@ class FlashcardPage extends Component {
         </div>
         <div className='buttonRow'>
           <CardButton
-            prevCard={this.prevCard}
-            randCard={this.randCard}
-            nextCard={this.nextCard}
+            traverseCard={this.traverseCard}
             flipCard={this.flipCard}
             showAnswer={this.showAnswer}
+            randCard={this.randCard}
             shuffleCards={this.shuffleCards}
             isHidden={this.state.answer.isHidden}
           />
@@ -177,9 +156,4 @@ class FlashcardPage extends Component {
   }
 }
 
-//export default FlashcardPage
-const Flashcards = withRouter(withFirebase(FlashcardPage))
-
-export default FlashcardPage
-
-export { Flashcards }
+export default withFirebase(FlashcardPage)

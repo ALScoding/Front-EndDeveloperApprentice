@@ -2,16 +2,17 @@ import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { withFirebase } from '../Firebase/context'
 import * as ROUTES from '../../constants/routes'
+import '../../css/SignForms.css'
 
 const SignUpPage = () => (
   <div>
-    <h1>SignUp</h1>
+    <h1>Sign up here:</h1>
     <SignUpForm />
   </div>
 )
 
 const INITIAL_STATE = {
-  username: '',
+  displayName: '',
   email: '',
   passwordOne: '',
   passwordTwo: '',
@@ -26,7 +27,7 @@ class SignUpFormBase extends Component {
   }
 
   onSubmit = event => {
-    const { username, email, passwordOne } = this.state
+    const { displayName, email, passwordOne } = this.state
 
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
@@ -35,7 +36,7 @@ class SignUpFormBase extends Component {
         this.props.firebase
           .user(authUser.user.uid)
           .set({
-            username,
+            displayName,
             email
           })
           .then(() => {
@@ -58,22 +59,22 @@ class SignUpFormBase extends Component {
   }
 
   render () {
-    const { username, email, passwordOne, passwordTwo, error } = this.state
+    const { displayName, email, passwordOne, passwordTwo, error } = this.state
 
     const isInvalid =
       passwordOne !== passwordTwo ||
       passwordOne === '' ||
       email === '' ||
-      username === ''
+      displayName === ''
 
     return (
       <form onSubmit={this.onSubmit}>
         <input
           name='username'
-          value={username}
+          value={displayName}
           onChange={this.onChange}
           type='text'
-          placeholder='Full Name'
+          placeholder='Your username'
         />
         <br />
         <input
@@ -81,7 +82,7 @@ class SignUpFormBase extends Component {
           value={email}
           onChange={this.onChange}
           type='text'
-          placeholder='Email Address'
+          placeholder='Your email address'
         />
         <br />
         <input
@@ -89,7 +90,7 @@ class SignUpFormBase extends Component {
           value={passwordOne}
           onChange={this.onChange}
           type='password'
-          placeholder='Password'
+          placeholder='Your unique password'
         />
         <br />
         <input
@@ -97,23 +98,23 @@ class SignUpFormBase extends Component {
           value={passwordTwo}
           onChange={this.onChange}
           type='password'
-          placeholder='Confirm Password'
+          placeholder='Confirm your password'
         />
         <br />
         <button disabled={isInvalid} type='submit'>
           Sign Up
         </button>
 
-        {error && <p>{error.message}</p>}
+        {error && <h1>{error.message}</h1>}
       </form>
     )
   }
 }
 
 const SignUpLink = () => (
-  <p>
-    Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
-  </p>
+  <h1>
+    Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign up now!</Link>
+  </h1>
 )
 
 const SignUpForm = withRouter(withFirebase(SignUpFormBase))

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { withFirebase } from '../Firebase/context'
+import { truncate } from 'lodash'
 
 //CRUD components
 class Flashcard extends Component {
@@ -10,6 +11,7 @@ class Flashcard extends Component {
     this.onChangeAnswer = this.onChangeAnswer.bind(this)
     this.updateFlashcard = this.updateFlashcard.bind(this)
     this.deleteFlashcard = this.deleteFlashcard.bind(this)
+    this.maxlen = this.maxlen.bind(this)
 
     this.state = {
       currentFlashcard: {
@@ -46,49 +48,50 @@ class Flashcard extends Component {
   }
 
   async componentDidMount () {
-    // let card
-    // console.log(this.props)
-    // await this.props.flashcard.callData().then(response => {
-    //   card = response
-    // })
     this.setState({
       currentFlashcard: this.props.flashcard
     })
   }
 
   onChangeFrontside (e) {
-    const frontside = e.target.value
-
+    const input = this.maxlen(e.target.value)
     this.setState(function (prevState) {
       return {
         currentFlashcard: {
           ...prevState.currentFlashcard,
-          frontside: frontside
+          frontside: input
         }
       }
     })
   }
 
   onChangeBackside (e) {
-    const backside = e.target.value
-
+    const input = this.maxlen(e.target.value)
     this.setState(prevState => ({
       currentFlashcard: {
         ...prevState.currentFlashcard,
-        backside: backside
+        backside: input
       }
     }))
   }
 
   onChangeAnswer (e) {
-    const answer = e.target.value
-
+    const input = this.maxlen(e.target.value, true)
     this.setState(prevState => ({
       currentFlashcard: {
         ...prevState.currentFlashcard,
-        answer: answer
+        answer: input
       }
     }))
+  }
+
+  maxlen (input, ans) {
+    let len = ans ? 44 : 24
+    let limit = truncate(input, {
+      length: len,
+      omission: ''
+    })
+    return limit
   }
 
   updateFlashcard () {
@@ -109,15 +112,6 @@ class Flashcard extends Component {
       .catch(e => {
         console.log(e)
       })
-    // FlashcardDataService.update(this.state.currentFlashcard.id, data)
-    //   .then(() => {
-    //     this.setState({
-    //       message: 'The Flashcard was updated successfully!'
-    //     })
-    //   })
-    //   .catch(e => {
-    //     console.log(e)
-    //   })
   }
 
   deleteFlashcard () {
@@ -132,16 +126,6 @@ class Flashcard extends Component {
       .catch(e => {
         console.log(e)
       })
-    // FlashcardDataService.delete(this.state.currentFlashcard.id)
-    //   .then(() => {
-    //     this.props.refreshList()
-    //     this.setState({
-    //       message: 'The Flashcard was deleted successfully!'
-    //     })
-    //   })
-    //   .catch(e => {
-    //     console.log(e)
-    //   })
   }
 
   render () {
@@ -160,33 +144,38 @@ class Flashcard extends Component {
           <div className='edit-form'>
             <form>
               <div className='form-group' style={margin1}>
-                <label htmlFor='Frontside'>Frontside</label>
+                <h3 htmlFor='Frontside'>Frontside:</h3>
                 <input
                   type='text'
                   className='form-control'
                   id='Frontside'
                   value={currentFlashcard.frontside}
                   onChange={this.onChangeFrontside}
+                  placeholder='add text here'
                 />
               </div>
               <div className='form-group' style={margin2}>
-                <label htmlFor='Backside'>Backside</label>
+                <h3 htmlFor='Backside'>Backside:</h3>
                 <input
                   type='text'
                   className='form-control'
                   id='Backside'
                   value={currentFlashcard.backside}
                   onChange={this.onChangeBackside}
+                  placeholder='add text here'
                 />
               </div>
               <div className='form-group' style={margin2}>
-                <label htmlFor='Backside'>Answer</label>
+                <h3 htmlFor='Backside' style={{ color: 'red' }}>
+                  Answer:
+                </h3>
                 <input
                   type='text'
                   className='form-control'
                   id='Answer'
                   value={currentFlashcard.answer}
                   onChange={this.onChangeAnswer}
+                  placeholder='add text here'
                 />
               </div>
             </form>
@@ -199,19 +188,17 @@ class Flashcard extends Component {
             </button>
 
             <button
-              type='submit'
               className='m-3 btn btn-lg btn-success'
               onClick={this.updateFlashcard}
             >
               Update
             </button>
-            <p>{this.state.message}</p>
+            <h3>{this.state.message}</h3>
           </div>
         ) : (
           <div>
             <br />
             <h3>Please click on a Flashcard...</h3>
-            <p>{this.state.message}</p>
           </div>
         )}
       </div>
