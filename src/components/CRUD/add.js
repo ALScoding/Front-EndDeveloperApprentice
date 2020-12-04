@@ -15,7 +15,6 @@ class AddFlashcard extends Component {
     this.newFlashcard = this.newFlashcard.bind(this)
     this.maxlen = this.maxlen.bind(this)
 
-    //works as expected except for correct id
     this.state = {
       id: '',
       frontside: '',

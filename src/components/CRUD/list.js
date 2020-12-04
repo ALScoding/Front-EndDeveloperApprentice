@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
-//import FlashcardDataService from '../services/flashcard.service'
 import '../../css/List.css'
 import Flashcard from '.'
 import { withFirebase } from '../Firebase/context'
 import { find, remove } from 'lodash'
 
-// list works as expected
 class FlashcardsList extends Component {
   constructor (props) {
     super(props)

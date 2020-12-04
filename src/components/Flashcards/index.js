@@ -57,7 +57,6 @@ class FlashcardPage extends Component {
   }
 
   randCard () {
-    // method originally called updateCard()
     const currentCards = this.state.cards
     this.setState({
       cards: currentCards,
@@ -67,7 +66,6 @@ class FlashcardPage extends Component {
   }
 
   traverseCard (direction) {
-    // added method
     const currentCards = this.state.cards
     let len = currentCards.length
     let { id } = this.state.currentCard
@@ -88,7 +86,6 @@ class FlashcardPage extends Component {
   }
 
   resetFlag () {
-    // added method
     this.setState({
       answer: { isHidden: true }
     })
@@ -120,7 +117,6 @@ class FlashcardPage extends Component {
   }
 
   showAnswer () {
-    // added method
     this.setState({
       answer: { isHidden: !this.state.answer.isHidden }
     })
