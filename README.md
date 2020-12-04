@@ -1,3 +1,11 @@
+A big thanks to these projects for providing a foundation for my code:
+
+https://github.com/wesdoyle/react-flashcards
+https://github.com/the-road-to-react-with-firebase/react-firebase-authentication/
+https://github.com/bezkoder/react-firebase-database-crud
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
