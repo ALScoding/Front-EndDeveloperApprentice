@@ -2,7 +2,6 @@
   font-size: 3em;
   font-weight: bolder;
   height: auto;
-  border: none;
   display: block;
   text-align: center;
   background: #222222;
@@ -30,4 +29,4 @@ button.btn:hover {
   color: goldenrod;
 }
 
-/*# sourceMappingURL=CardButton.css.map */
+/*# sourceMappingURL=Buttons.css.map */

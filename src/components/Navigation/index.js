@@ -33,7 +33,9 @@ const NavigationAuth = () => (
           <Link to={ROUTES.FLASHCARDS}>Study Now</Link>
         </li>
         <li>
-          <SignOutButton />
+          <Link to={ROUTES.HOME}>
+            <SignOutButton />
+          </Link>
         </li>
       </ul>
     </div>

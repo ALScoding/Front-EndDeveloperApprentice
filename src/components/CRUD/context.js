@@ -9,8 +9,8 @@ class CardManager extends Component {
   render () {
     return (
       <div>
-        <div className='container mt-3'>
-          <h1>Flashcard Data Editor</h1>
+        <div class='alert alert-dark' role='alert'>
+          <h1><strong>Flashcard Data Editor</strong></h1>
           <br></br>
           <Switch>
             <Route exact path='/list' component={FlashcardsList} />

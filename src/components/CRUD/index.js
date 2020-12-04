@@ -108,6 +108,7 @@ class Flashcard extends Component {
           currentFlashcard: { ...this.state.currentFlashcard, data },
           message: 'The Flashcard was updated successfully!'
         })
+        window.alert(this.state.message)
       })
       .catch(e => {
         console.log(e)
@@ -118,10 +119,11 @@ class Flashcard extends Component {
     this.props.firebase
       .deleteCard(this.state.currentFlashcard.id)
       .then(response => {
-        this.props.refreshList(false, this.state.currentFlashcard.id)
         this.setState({
           message: 'The Flashcard was deleted successfully!'
         })
+        window.alert(this.state.message)
+        this.props.refreshList(false, this.state.currentFlashcard.id)
       })
       .catch(e => {
         console.log(e)
@@ -181,19 +183,18 @@ class Flashcard extends Component {
             </form>
 
             <button
-              className='m-3 btn btn-lg btn-danger'
+              className='m-3 btn-lg btn-danger'
               onClick={this.deleteFlashcard}
             >
               Delete
             </button>
 
             <button
-              className='m-3 btn btn-lg btn-success'
+              className='m-3 btn-lg btn-success'
               onClick={this.updateFlashcard}
             >
               Update
             </button>
-            <h3>{this.state.message}</h3>
           </div>
         ) : (
           <div>

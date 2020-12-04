@@ -66,19 +66,19 @@ class FlashcardsList extends Component {
   }
 
   removeAllFlashcards () {
-    this.props.firebase
-      .deleteAll()
-      .then(() => {
-        this.refreshList(true)
-      })
-      .catch(e => {
-        console.log(e)
-      })
-  }
-
-  updateCardInList (data, id) {
-    let { cards } = this.state
-    let card = find(cards, c => c.id === id)
+    var r = window.confirm('Are you sure you want to remove all cards?')
+    if (r === false) {
+      return
+    } else {
+      this.props.firebase
+        .deleteAll()
+        .then(() => {
+          this.refreshList(true)
+        })
+        .catch(e => {
+          console.log(e)
+        })
+    }
   }
 
   render () {
@@ -99,14 +99,13 @@ class FlashcardsList extends Component {
                     onClick={() => this.setActiveFlashcard(flashcard, index)}
                     id={index}
                   >
-                    {' '}
                     Entry # {flashcard.id + 1}
                   </li>
                 ))}
             </ul>
           </div>
           <button
-            className='m-6 btn btn-lg btn-danger'
+            className='m-3 btn-lg btn-danger'
             onClick={this.removeAllFlashcards}
           >
             Remove All

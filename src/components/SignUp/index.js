@@ -33,9 +33,9 @@ class SignUpFormBase extends Component {
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
         // Create a user in your Firebase realtime database
-        this.props.firebase
-          .user(authUser.user.uid)
-          .set({
+        let user = authUser.user
+        user
+          .updateProfile({
             displayName,
             email
           })
@@ -70,7 +70,7 @@ class SignUpFormBase extends Component {
     return (
       <form onSubmit={this.onSubmit}>
         <input
-          name='username'
+          name='displayName'
           value={displayName}
           onChange={this.onChange}
           type='text'

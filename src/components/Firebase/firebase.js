@@ -75,19 +75,6 @@ class Firebase {
     return this.db.ref('/cards/' + flashcard.id).push()
   }
 
-  // await this.db.ref('cards', snapshot => {
-  //   let items = snapshot.val()
-  //   let count = 0
-
-  //   for (var property in items) {
-  //     if (Object.prototype.hasOwnProperty.call(items, property)) {
-  //       count++
-  //     }
-  //   }
-  //   flashcard.id = count
-  //   db.push(flashcard)
-  // })
-
   // *** User API ***
 
   user = uid => this.db.ref(`users/${uid}`)

@@ -1,0 +1,40 @@
+$f: 2em;
+$r: 4px;
+$w: 90%;
+$bord: 2px solid #ccc;
+$mar: 5px 0;
+$pad: 12px 20px;
+
+input[type="text"],
+input[type="password"],
+select {
+  font-size: $f;
+  width: $w;
+  padding: $pad;
+  margin: $mar;
+  display: inline-block;
+  border: $bord;
+  border-radius: $r;
+  box-sizing: border-box;
+}
+
+button[type="submit"] {
+  color: white;
+  font-size: $f;
+  width: $w;
+  background-color: green;
+  padding: $pad;
+  margin: $mar;
+  border: $bord;
+  border-radius: $r;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: darkgreen;
+}
+
+div,
+p {
+  text-align: center;
+}

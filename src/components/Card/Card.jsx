@@ -1,8 +1,8 @@
-import React from 'react'
-import '../../css/Card.css'
-import ReactCardFlip from 'react-card-flip'
+import React from "react";
+import "../../css/Card.css";
+import ReactCardFlip from "react-card-flip";
 
-const Card = props => (
+const Card = (props) => (
   <div className='card-container'>
     <div className='card'>
       <ReactCardFlip isFlipped={props.isFlipped} flipDirection='horizontal'>
@@ -11,7 +11,7 @@ const Card = props => (
           <div className='bothsides'>{props.frontside}</div>
           <div
             className='answer'
-            style={{ display: props.isHidden ? 'none' : 'block' }}
+            style={{ display: props.isHidden ? "none" : "block" }}
           >
             {props.answer}
           </div>
@@ -21,7 +21,7 @@ const Card = props => (
           <div className='bothsides'>{props.backside}</div>
           <div
             className='answer'
-            style={{ display: props.isHidden ? 'none' : 'block' }}
+            style={{ display: props.isHidden ? "none" : "block" }}
           >
             {props.answer}
           </div>
@@ -29,6 +29,6 @@ const Card = props => (
       </ReactCardFlip>
     </div>
   </div>
-)
+);
 
-export default Card
+export default Card;

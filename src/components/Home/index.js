@@ -1,13 +1,14 @@
 import React from 'react'
 import DateTime from '../DateTime'
 import { AuthUserContext } from '../Session'
+import '../../css/DivAlert.css'
 
 const HomePage = () => (
-  <div>
+  <div class='alert alert-dark' role='alert'>
     <h1>
-      <strong>✭ ✮ ✭ Welcome User ✭ ✮ ✭</strong>
+      <strong>✭✮✭ Welcome User ✭✮✭</strong>
     </h1>
-    <div class='alert alert-dark' role='alert'>
+    <div>
       <AuthUserContext.Consumer>
         {authUser => (authUser ? <NonAuthInfo /> : <AuthInfo />)}
       </AuthUserContext.Consumer>
@@ -17,7 +18,7 @@ const HomePage = () => (
 )
 
 const AuthInfo = () => (
-  <div style={{ textAlign: 'left', marginLeft: '25%' }}>
+  <div>
     <h2>
       To get started, please select Sign In or Sign Up from the above navbar.
     </h2>
@@ -25,7 +26,7 @@ const AuthInfo = () => (
 )
 
 const NonAuthInfo = () => (
-  <div style={{ textAlign: 'left', marginLeft: '25%' }}>
+  <div>
     <h1>Now that you're logged in, you can select from above:</h1>
     <h2>
       <strong>Account</strong>: view your personal information stored in

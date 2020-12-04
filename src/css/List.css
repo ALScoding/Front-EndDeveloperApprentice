@@ -1,7 +1,9 @@
 #table-scroll {
-    height: 360px;
-    overflow: auto;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    background-color: lightgray;
+  height: 360px;
+  width: auto;
+  overflow: auto;
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
+
+/*# sourceMappingURL=List.css.map */

@@ -1,86 +1,60 @@
+//account page index.js
 import React, { Component } from 'react'
 import { withFirebase } from '../Firebase/context'
-
 class AccountPage extends Component {
   constructor (props) {
     super(props)
-
     this.state = {
       uid: '',
-      email: '',
       displayName: '',
+      email: '',
       loading: false
     }
   }
-
   componentDidMount () {
-    // var user = this.props.firebase.auth.onAuthStateChanged(user => {
-    //   this.setState({ user })
-    // })
-    // console.log(user)
-    // console.log(this.state.user)
-    // if uid is equal to logged in user, something
-
-    this.setState({ loading: true })
-
     this.props.firebase.auth.onAuthStateChanged(user => {
-      //const userObject = snapshot.val()
-      //console.log(userObject)
-      // const usersList = Object.keys(userObject).map(key => ({
-      //   ...userObject[key],
-      //   uid: key
-      // }))
-      console.log(user)
       this.setState({
         uid: user.uid,
-        email: user.email,
         displayName: user.displayName,
-        loading: false
+        email: user.email
       })
     })
+    this.setState({ loading: true })
   }
-
   componentWillUnmount () {
     this.props.firebase.user().off()
   }
-
   render () {
     const { loading } = this.state
-
     return (
-      <div>
-        <h1>Your account data:</h1>
+      <div class='alert alert-dark' role='alert'>
+        <h1>
+          <strong>Your Account Data</strong>
+        </h1>
         <br></br>
-        {loading && (
-          <div>
-            <h3>Now loading ...</h3>
-          </div>
-        )}
-
-        <UserList />
+        {loading}
+        <UserList
+          uid={this.state.uid}
+          displayName={this.state.displayName}
+          email={this.state.email}
+        />
       </div>
     )
   }
 }
-
-const UserList = (
-  <ul>
-    {/* <li>
+const UserList = props => {
+  return (
+    <div style={{ fontStyle: 'oblique' }}>
       <h3>
-        <strong>ID:</strong> {this.state.uid}
+        <strong>ID:</strong> {props.uid}
       </h3>
-    </li>
-    <li>
       <h3>
-        <strong>Email:</strong> {this.state.email}
+        <strong>Email:</strong> {props.email}
       </h3>
-    </li>
-    <li>
       <h3>
-        <strong>Username:</strong> {this.state.displayName}
+        <strong>Username:</strong> {props.displayName}
       </h3>
-    </li> */}
-  </ul>
-)
-
+    </div>
+  )
+}
 export default withFirebase(AccountPage)
