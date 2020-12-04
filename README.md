@@ -1,7 +1,9 @@
 A big thanks to these projects for providing a foundation for my code:
 
 https://github.com/wesdoyle/react-flashcards
+
 https://github.com/the-road-to-react-with-firebase/react-firebase-authentication/
+
 https://github.com/bezkoder/react-firebase-database-crud
 
 
