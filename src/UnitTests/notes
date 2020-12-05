@@ -1,0 +1,5 @@
+tests that pass:
+Card, CardButton from Card.test.js
+DateTime from DateTime.test.js
+NavigationAuth, NavigationNonAuth from Navigation.test.js
+SignUpForm from SignUp.test.js

@@ -4,6 +4,5 @@ import DateTime from '../components/DateTime/.'
 
 // the test should pass
 it('DateTime component renders without crashing', () => {
-  const div = document.createElement('div')
-  ReactDOM.render(<DateTime />, div)
+  ReactDOM.render(<DateTime />, document.createElement('div'))
 })
