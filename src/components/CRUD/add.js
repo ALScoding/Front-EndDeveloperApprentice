@@ -70,7 +70,6 @@ class AddFlashcard extends Component {
       answer: this.state.answer
     }
 
-    //FlashcardDataService.create(data) replaced
     this.props.firebase
       .create(data)
       .then(() => {

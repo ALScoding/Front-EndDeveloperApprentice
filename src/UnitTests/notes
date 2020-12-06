@@ -1,5 +1,20 @@
 tests that pass:
-Card, CardButton from Card.test.js
-DateTime from DateTime.test.js
-NavigationAuth, NavigationNonAuth from Navigation.test.js
-SignUpForm from SignUp.test.js
+---------------------------------------------------------------
+Card, CardButton                        from Card.test.js
+AddFlashcard                            from CRUD.test.js
+DateTime                                from DateTime.test.js
+3 email tests                           from EmailAndPass.test.js
+NavigationAuth, NavigationNonAuth       from Navigation.test.js
+PasswordForget                          from Password.test.js
+SignInForm, SignUpForm                  from SignInUp.test.js
+
+11 total
+
+WIP:
+UserList (mock data?)                   from Accont.test.js
+Flashcard, FlashcardsList               from CRUD.test.js
+create/delete a Card                from Flashcards.test.js
+
+updateCard?
+
+17 total

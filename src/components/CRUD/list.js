@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import '../../css/List.css'
 import Flashcard from '.'
 import { withFirebase } from '../Firebase/context'
-import { find, remove } from 'lodash'
+import { remove } from 'lodash'
 
 class FlashcardsList extends Component {
   constructor (props) {

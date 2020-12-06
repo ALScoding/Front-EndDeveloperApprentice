@@ -1,6 +1,9 @@
 import * as firebaseAdmin from 'firebase-admin'; 
 import firebaseServiceAccountKey from './firebaseServiceAccountKey.json';
- 
+import firebaseAdmin from './firebase';
+import { createCourse } from './';
+import * as firebaseAdminVanilla from 'firebase-admin';
+
 if (!firebaseAdmin.apps.length) {
   firebaseAdmin.initializeApp({
     credential: firebaseAdmin.credential.cert(
@@ -10,11 +13,7 @@ if (!firebaseAdmin.apps.length) {
   });
 }
  // https://myflashcards-f48b9.firebaseio.com
-export default firebaseAdmin;
 
-
-import firebaseAdmin from './firebase';
- 
 export const createCourse = async ({
   uid,
   courseId,
@@ -40,10 +39,8 @@ export const createCourse = async ({
  
   return true;
 }
+export default firebaseAdmin;
 
-import { createCourse } from './';
-import firebaseAdmin from './firebase';
- 
 describe('createFreeCourse', () => {
   it('creates a course', async () => {
     const set = firebaseAdmin
@@ -77,9 +74,6 @@ describe('createFreeCourse', () => {
   });
 });
 
-import { createCourse } from './';
-import firebaseAdmin from './firebase';
- 
 jest.mock('./firebase', () => {
   const set = jest.fn();
  
@@ -98,10 +92,6 @@ describe('createFreeCourse', () => {
   ...
 });
 
-import * as firebaseAdminVanilla from 'firebase-admin';
- 
-import firebaseAdmin from './firebase';
- 
 export const createCourse = async ({
   uid,
   courseId,
@@ -125,9 +115,7 @@ export const createCourse = async ({
       },
     });
 
-    import { createCourse } from './';
-import firebaseAdmin from './firebase';
- 
+
 jest.mock('firebase-admin', () => {
   return {
     database: {

@@ -30,8 +30,8 @@ class SignInFormBase extends Component {
   }
 
   componentDidMount () {
-    console.log(this.props.firebase.callData())
-    console.log(this.props.firebase.users())
+    // console.log(this.props.firebase.callData())
+    // console.log(this.props.firebase.users())
   }
   onSubmit = event => {
     const { email, password } = this.state

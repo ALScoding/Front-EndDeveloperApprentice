@@ -41,7 +41,9 @@ class Firebase {
       .ref('cards')
       .once('value')
       .then(snapshot => {
-        return snapshot.val().filter(card => card != null)
+        return snapshot.val() != undefined
+          ? snapshot.val().filter(card => card != null)
+          : []
       })
 
   updateCard = async (id, value) =>
