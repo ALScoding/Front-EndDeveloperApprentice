@@ -3,7 +3,7 @@ import { withFirebase } from '../Firebase/context'
 import { truncate } from 'lodash'
 
 //CRUD components
-class Flashcard extends Component {
+export class Flashcard extends Component {
   constructor (props) {
     super(props)
     this.onChangeFrontside = this.onChangeFrontside.bind(this)

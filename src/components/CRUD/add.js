@@ -4,10 +4,9 @@ import '../../css/SignForms.css'
 import { truncate } from 'lodash'
 
 // page that allows user to card new flashcards
-class AddFlashcard extends Component {
+export class AddFlashcard extends Component {
   constructor (props) {
     super(props)
-    this.onChangeId = this.onChangeId.bind(this)
     this.onChangeFrontside = this.onChangeFrontside.bind(this)
     this.onChangeBackside = this.onChangeBackside.bind(this)
     this.onChangeAnswer = this.onChangeAnswer.bind(this)
@@ -22,14 +21,6 @@ class AddFlashcard extends Component {
       answer: '',
       submitted: false
     }
-  }
-
-  onChangeId () {
-    let cards = 70
-
-    this.setState({
-      id: cards
-    })
   }
 
   onChangeFrontside (e) {

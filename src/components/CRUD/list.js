@@ -4,7 +4,7 @@ import Flashcard from '.'
 import { withFirebase } from '../Firebase/context'
 import { remove } from 'lodash'
 
-class FlashcardsList extends Component {
+export class FlashcardsList extends Component {
   constructor (props) {
     super(props)
     this.refreshList = this.refreshList.bind(this)

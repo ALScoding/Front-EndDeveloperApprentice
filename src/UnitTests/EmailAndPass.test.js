@@ -15,7 +15,7 @@ describe('errors from doCreateUserWithEmailAndPassword', () => {
 
   it('should return an error due to short password', async () => {
     const result = firebase
-      .doCreateUserWithEmailAndPassword('myEmail@email.com', 'pass')
+      .doCreateUserWithEmailAndPassword('slacker@gmail.com', 'pass')
       .catch(e => e.message)
 
     await expect(result).resolves.toEqual(
@@ -25,7 +25,7 @@ describe('errors from doCreateUserWithEmailAndPassword', () => {
 
   it('should return an error due to user existing', async () => {
     const result = firebase
-      .doCreateUserWithEmailAndPassword('myEmail@email.com', 'password123')
+      .doCreateUserWithEmailAndPassword('slacker@gmail.com', 'blahblah')
       .catch(e => e.message)
 
     await expect(result).resolves.toEqual(
@@ -34,13 +34,17 @@ describe('errors from doCreateUserWithEmailAndPassword', () => {
   })
 })
 
-// not working
+// now working
 describe('sign in then sign out', () => {
-  let user
-  it('should return true', async () => {
-    const result = firebase
-      .doSignInWithEmailAndPassword('myEmail@email.com', 'password123')
-      .doSignOut.catch(e => (user = e))
-    expect(user).toEqual(true)
+  it('should sign in with email and password', async () => {
+    const result = await firebase
+      .doSignInWithEmailAndPassword('slacker@gmail.com', 'blahblah')
+      .then(e => e)
+    expect(result.user.uid).toBeTruthy()
+  })
+
+  it('should sign out', async () => {
+    const result = await firebase.doSignOut().then(e => e)
+    expect(result).toBeFalsy()
   })
 })

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../../css/Buttons.css";
 
-class CardButton extends Component {
+export class CardButton extends Component {
   constructor(props) {
     super(props);
   }

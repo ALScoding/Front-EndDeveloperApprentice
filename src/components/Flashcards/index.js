@@ -70,13 +70,13 @@ class FlashcardPage extends Component {
     let len = currentCards.length
     let { id } = this.state.currentCard
     let cardArrIndex = currentCards.findIndex(card => card.id === id)
-    console.log('before', len, cardArrIndex)
+    //console.log('before', len, cardArrIndex)
     if (direction === 'L') {
       cardArrIndex = cardArrIndex <= 0 ? len - 1 : --cardArrIndex
     } else if (direction === 'R') {
       cardArrIndex = cardArrIndex >= len - 1 ? 0 : ++cardArrIndex
     }
-    console.log('after', len, cardArrIndex)
+    //console.log('after', len, cardArrIndex)
     this.setState({
       cards: currentCards,
       currentCard: currentCards[cardArrIndex]
