@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../../css/Buttons.css";
+import "../../sass/Buttons.scss";
 
 export class CardButton extends Component {
   constructor(props) {

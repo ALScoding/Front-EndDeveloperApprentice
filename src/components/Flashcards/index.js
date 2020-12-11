@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import '../../css/Flash-index.css'
+import '../../sass/Flash-index.scss'
 import Card from '../Card/Card'
 import CardButton from '../CardButton/CardButton'
 import 'firebase/database'

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withFirebase } from '../Firebase/context'
-import '../../css/SignForms.css'
+import '../../sass/SignForms.scss'
 import { truncate } from 'lodash'
 
 // page that allows user to card new flashcards

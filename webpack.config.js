@@ -1,8 +1,6 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
-
 const HtmlMinimizerPlugin = require('html-minimizer-webpack-plugin')
-const CopyPlugin = require('copy-webpack-plugin')
 
 const path = require('path')
 module.exports = {
@@ -18,10 +16,10 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader']
-      },
+      // {
+      //   test: /\.css$/,
+      //   use: ['style-loader', 'css-loader']
+      // },
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -45,7 +43,7 @@ module.exports = {
       },
       {
         test: /.s?css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+        use: [MiniCssExtractPlugin.loader, 'sass-loader']
       }
     ]
   },

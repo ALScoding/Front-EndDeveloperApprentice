@@ -1,5 +1,5 @@
 import React from "react";
-import "../../css/Card.css";
+import "../../sass/Card.scss";
 import ReactCardFlip from "react-card-flip";
 
 const Card = (props) => (

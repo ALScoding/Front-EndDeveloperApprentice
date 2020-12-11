@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { withFirebase } from '../Firebase/context'
 import * as ROUTES from '../../constants/routes'
-import '../../css/SignForms.css'
+import '../../sass/SignForms.scss'
 
 const PasswordForgetPage = () => (
   <div>

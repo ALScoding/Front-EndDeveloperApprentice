@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import '../../css/List.css'
+import '../../sass/List.scss'
 import Flashcard from '.'
 import { withFirebase } from '../Firebase/context'
 import { remove } from 'lodash'

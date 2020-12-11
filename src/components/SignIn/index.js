@@ -5,7 +5,7 @@ import { SignUpLink } from '../SignUp'
 import { PasswordForgetLink } from '../PasswordForget'
 import { withFirebase } from '../Firebase/context'
 import * as ROUTES from '../../constants/routes'
-import '../../css/SignForms.css'
+import '../../sass/SignForms.scss'
 
 const SignInPage = () => (
   <div>

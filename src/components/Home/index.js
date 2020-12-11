@@ -1,7 +1,7 @@
 import React from 'react'
 import DateTime from '../DateTime'
 import { AuthUserContext } from '../Session'
-import '../../css/DivAlert.css'
+import '../../sass/DivAlert.scss'
 
 const HomePage = () => (
   <div class='alert alert-dark' role='alert'>

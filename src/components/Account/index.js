@@ -1,6 +1,7 @@
 //account page index.js
 import React, { Component } from 'react'
 import { withFirebase } from '../Firebase/context'
+
 class AccountPage extends Component {
   constructor (props) {
     super(props)
